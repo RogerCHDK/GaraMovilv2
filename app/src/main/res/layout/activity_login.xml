@@ -14,90 +14,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="30dp"
-        android:text="Bienvenido" />
+        android:text="Bienvenido"
+        android:textSize="24sp" />
 
-    <EditText
-        android:id="@+id/txt_nombrePersona"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/s_nombre"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txt_ap_pPersona"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/s_apellido_p"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txt_ap_mPersona"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/s_apellido_m"
-        android:inputType="textPersonName" />
-
-    <EditText
-            android:id="@+id/txt_correoPersona"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/s_correo"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/txt_passwordPersona"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/s_password"
-            android:inputType="textPassword"
-            />
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="341dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/logo" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
+        android:id="@+id/textView6"
+        android:layout_width="367dp"
         android:layout_height="wrap_content"
-        android:text="@string/s_tipo_usuario"
-        android:paddingBottom="10dp"/>
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="25dp">
-
-        <RadioButton
-            android:id="@+id/rb_cliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/cliente"
-            tools:text="@string/cliente" />
-
-        <RadioButton
-            android:id="@+id/rb_vendedor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vendedor"
-            tools:text="@string/vendedor" />
-    </RadioGroup>
+        android:text="Valida tus Garantias."
+        android:textSize="34sp"
+        android:textStyle="italic"
+        android:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:orientation="horizontal"
-        android:padding="5dp"
-        >
+        android:padding="5dp">
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/btn_crear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/register" />
+            android:text="Crear una cuenta " />
 
         <Button
             android:id="@+id/login"
@@ -107,5 +53,103 @@
             android:text="@string/s_login" />
 
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/txt_nombrePersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_nombre"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/txt_ap_pPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_apellido_p"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/txt_ap_mPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_apellido_m"
+                android:inputType="textPersonName"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/txt_correoPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_correo"
+                android:inputType="textEmailAddress"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/txt_passwordPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_password"
+                android:inputType="textPassword"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:text="@string/s_tipo_usuario"
+                android:visibility="gone" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="25dp">
+
+                <RadioButton
+                    android:id="@+id/rb_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/cliente"
+                    android:visibility="gone"
+                    tools:text="@string/cliente" />
+
+                <RadioButton
+                    android:id="@+id/rb_vendedor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vendedor"
+                    android:visibility="gone"
+                    tools:text="@string/vendedor" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/register"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
