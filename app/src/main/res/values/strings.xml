@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">GARANTEMEX</string>
+    <string name="s_nombre">Nombre</string>
+    <string name="s_apellidos">Apellidos</string>
+    <string name="s_apellido_p">Apellido Paterno</string>
+    <string name="s_apellido_m">Apellido Materno</string>
+    <string name="s_correo">Correo</string>
+    <string name="s_password">Contraseña</string>
+    <string name="s_lista">Lista</string>
+    <string name="s_tipo_usuario">Tipo Usuario</string>
+    <string name="cliente">Cliente</string>
+    <string name="vendedor">Vendedor</string>
+    <string name="s_login">Ya tengo cuenta</string>
+
+    <string name="s_agregar">Agregar</string>
+    <string name="s_eliminar">Eliminar</string>
+    <string name="s_modificar">Modificar</string>
+    <string name="login">Iniciar Sesion</string>
+    <string name="register">Registrarse</string>
+    <string name="cerrar">Cerrar Sesion</string>
+
+    <string name="producto"> Producto </string>
+    <string name="tiempo">Tiempo </string>
+    <string name="condiciones">Condiciones</string>
+    <string name="tienda">Tienda</string>
+    <string name="id_usuario">ID_Usuario</string>
+    <string name="title_activity_menu">Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Perfil</string>
+    <string name="menu_gallery">Garantia</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

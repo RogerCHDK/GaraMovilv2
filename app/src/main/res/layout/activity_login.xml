@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Login">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="30dp"
+        android:text="Bienvenido" />
+
+    <EditText
+        android:id="@+id/txt_nombrePersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/s_nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txt_ap_pPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/s_apellido_p"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/txt_ap_mPersona"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/s_apellido_m"
+        android:inputType="textPersonName" />
+
+    <EditText
+            android:id="@+id/txt_correoPersona"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/s_correo"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/txt_passwordPersona"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/s_password"
+            android:inputType="textPassword"
+            />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/s_tipo_usuario"
+        android:paddingBottom="10dp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp">
+
+        <RadioButton
+            android:id="@+id/rb_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/cliente"
+            tools:text="@string/cliente" />
+
+        <RadioButton
+            android:id="@+id/rb_vendedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vendedor"
+            tools:text="@string/vendedor" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        >
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/register" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/s_login" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/datos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Datos"
+                android:textAlignment="center" />
+
+            <EditText
+                android:id="@+id/txt_nombrePersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_nombre"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/txt_appPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_apellidos"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/txt_correoPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_correo"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/txt_passwordPersona"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/s_password"
+                android:inputType="textPassword" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:textAlignment="center"
+                android:text="@string/s_lista" />
+
+            <ListView
+                android:id="@+id/lv_datosPersona"
+                android:layout_width="match_parent"
+                android:layout_height="417dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
