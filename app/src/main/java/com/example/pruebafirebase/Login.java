@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pruebafirebase.model.Usuario;
@@ -26,8 +27,9 @@ import com.google.firebase.database.ValueEventListener;
 public class Login extends AppCompatActivity {
 
     EditText nomP,app_p,app_m, correoP, passwordP;
+    TextView aux, aux2;
     RadioButton rb_cliente,rb_vendedor;
-    Button registro,login;
+    Button registro,login, crear;
 
     //variables de los datos que voy a capturar
     String nombre = " ",ap_Paterno= " ",ap_Materno = " ", correo = " ",password = " ",tipo_usuario=" ";
@@ -46,12 +48,33 @@ public class Login extends AppCompatActivity {
         app_m = findViewById(R.id.txt_ap_mPersona);
         correoP = findViewById(R.id.txt_correoPersona);
         passwordP = findViewById(R.id.txt_passwordPersona);
+        aux = findViewById(R.id.textView2);
+        aux2 = findViewById(R.id.textView6);
         rb_cliente = findViewById(R.id.rb_cliente);
         rb_vendedor = findViewById(R.id.rb_vendedor);
         registro = findViewById(R.id.register);
         login = findViewById(R.id.login);
+        crear = findViewById(R.id.btn_crear);
+
 
         inicializarFirebase();
+
+        crear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nomP.setVisibility(View.GONE);
+                nomP.setVisibility(View.VISIBLE);
+                app_p.setVisibility(View.VISIBLE);
+                app_m.setVisibility(View.VISIBLE);
+                correoP.setVisibility(View.VISIBLE);
+                passwordP.setVisibility(View.VISIBLE);
+                aux.setVisibility(View.VISIBLE);
+                rb_cliente.setVisibility(View.VISIBLE);
+                rb_vendedor.setVisibility(View.VISIBLE);
+                registro.setVisibility(View.VISIBLE);
+
+            }
+        });
 
         registro.setOnClickListener(new View.OnClickListener() {
             @Override
