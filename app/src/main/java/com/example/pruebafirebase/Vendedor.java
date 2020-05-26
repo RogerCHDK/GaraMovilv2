@@ -1,15 +1,19 @@
 package com.example.pruebafirebase;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -17,6 +21,8 @@ import android.widget.Toast;
 import com.example.pruebafirebase.model.Garantia;
 import com.example.pruebafirebase.model.Persona;
 import com.example.pruebafirebase.model.Usuario;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,8 +30,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,6 +45,7 @@ public class Vendedor extends AppCompatActivity {
 
     EditText producto,tiempo, condiciones, tienda,id_usuario;
     ListView listV_usuarios;
+    Button btn_foto;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -41,6 +54,8 @@ public class Vendedor extends AppCompatActivity {
     Usuario personaSelect;
     private List<Usuario> listPersona = new ArrayList<>();
     ArrayAdapter<Usuario> arrayAdapterPersona;
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +67,7 @@ public class Vendedor extends AppCompatActivity {
         condiciones = findViewById(R.id.txt_condiciones);
         tienda = findViewById(R.id.txt_tienda);
         id_usuario = findViewById(R.id.txt_idUsuario);
+        btn_foto = findViewById(R.id.btn_foto);
 
         listV_usuarios = findViewById(R.id.lv_datosUsuario);
 
@@ -66,6 +82,51 @@ public class Vendedor extends AppCompatActivity {
             }
         });
 
+        btn_foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+
+            String timeStamp = new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss").format(new Date());
+
+            // Creamos una referencia a la carpeta y el nombre de la imagen donde se guardara
+            StorageReference mountainImagesRef = storageRef.child("camara/" + timeStamp + ".jpg");
+            //Pasamos la imagen a un array de byte
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] datas = baos.toByteArray();
+
+            // Empezamos con la subida a Firebase
+            UploadTask uploadTask = mountainImagesRef.putBytes(datas);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getBaseContext(), "Hubo un error", Toast.LENGTH_LONG);
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(getBaseContext(), "Subida con exito", Toast.LENGTH_LONG);
+                }
+            });
+
+        }
     }
 
     private void listarDatos() {

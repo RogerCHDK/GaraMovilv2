@@ -64,6 +64,12 @@
                 android:hint="@string/id_usuario"
                 />
 
+            <Button
+                android:id="@+id/btn_foto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tomar foto" />
+
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
