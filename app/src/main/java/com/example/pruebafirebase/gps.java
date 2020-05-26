@@ -8,6 +8,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -38,10 +39,14 @@ public class gps extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.setMyLocationEnabled(true);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng prueba = new LatLng(19.278912, -99.628864);
+        mMap.addMarker(new MarkerOptions().position(prueba).title("Steren").snippet("Contamos con garantías virtuales").icon(BitmapDescriptorFactory.fromResource(R.drawable.icono1)));
+        LatLng prueba2 = new LatLng(19.249526, -99.600256);
+        mMap.addMarker(new MarkerOptions().position(prueba2).title("ùwú").snippet("Contamos con garantías virtuales").icon(BitmapDescriptorFactory.fromResource(R.drawable.icono1)));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(prueba,12));
     }
 }
