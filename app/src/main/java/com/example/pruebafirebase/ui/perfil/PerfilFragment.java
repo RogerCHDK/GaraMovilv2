@@ -17,6 +17,7 @@ import com.example.pruebafirebase.MenuCliente;
 import com.example.pruebafirebase.Perfil;
 import com.example.pruebafirebase.R;
 import com.example.pruebafirebase.gps;
+import com.example.pruebafirebase.web;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,7 @@ public class PerfilFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    Button logout, mapa;
+    Button logout, mapa, web;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -68,6 +69,14 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), gps.class);
+                getActivity().startActivity(intent);
+            }
+        });
+        web = root.findViewById(R.id.web);
+        web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), com.example.pruebafirebase.web.class);
                 getActivity().startActivity(intent);
             }
         });
