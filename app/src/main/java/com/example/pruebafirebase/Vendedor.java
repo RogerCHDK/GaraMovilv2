@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class Vendedor extends AppCompatActivity {
     EditText producto,tiempo, condiciones, tienda,id_usuario;
     ListView listV_usuarios;
     Button btn_foto;
+    ImageView img_producto;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -68,6 +70,7 @@ public class Vendedor extends AppCompatActivity {
         tienda = findViewById(R.id.txt_tienda);
         id_usuario = findViewById(R.id.txt_idUsuario);
         btn_foto = findViewById(R.id.btn_foto);
+        img_producto = findViewById(R.id.img_producto);
 
         listV_usuarios = findViewById(R.id.lv_datosUsuario);
 
@@ -100,6 +103,8 @@ public class Vendedor extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+            img_producto.setImageBitmap(imageBitmap);
+
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
 
@@ -114,6 +119,7 @@ public class Vendedor extends AppCompatActivity {
 
             // Empezamos con la subida a Firebase
             UploadTask uploadTask = mountainImagesRef.putBytes(datas);
+
             uploadTask.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
@@ -122,7 +128,8 @@ public class Vendedor extends AppCompatActivity {
             }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(getBaseContext(), "Subida con exito", Toast.LENGTH_LONG);
+                    Toast.makeText(Vendedor.this, "Subida con exito", Toast.LENGTH_LONG);
+
                 }
             });
 

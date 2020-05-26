@@ -64,6 +64,12 @@
                 android:hint="@string/id_usuario"
                 />
 
+            <ImageView
+                android:id="@+id/img_producto"
+                android:layout_width="381dp"
+                android:layout_height="120dp"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
+
             <Button
                 android:id="@+id/btn_foto"
                 android:layout_width="match_parent"
