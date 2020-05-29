@@ -1,7 +1,13 @@
 package com.example.pruebafirebase;
 
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,6 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class gps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private  int permiso=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,24 @@ public class gps extends FragmentActivity implements OnMapReadyCallback {
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setMyLocationEnabled(true);
+        /*
+        if (ContextCompat.checkSelfPermission(gps.this,
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(gps.this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                mMap.setMyLocationEnabled(true);
+            } else {
+
+                ActivityCompat.requestPermissions(gps.this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        permiso);
+            }
+        }else{
+            mMap.setMyLocationEnabled(true);
+        }
+
+         */
         // Add a marker in Sydney and move the camera
         LatLng prueba = new LatLng(19.278912, -99.628864);
         mMap.addMarker(new MarkerOptions().position(prueba).title("Steren").snippet("Contamos con garantías virtuales").icon(BitmapDescriptorFactory.fromResource(R.drawable.icono1)));
