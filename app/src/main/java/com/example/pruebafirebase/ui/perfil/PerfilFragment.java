@@ -1,6 +1,8 @@
 package com.example.pruebafirebase.ui.perfil;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -10,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.pruebafirebase.Login;
@@ -34,6 +38,7 @@ public class PerfilFragment extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     Button logout, mapa, web;
+    private  int permiso=1;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -68,8 +73,30 @@ public class PerfilFragment extends Fragment {
         mapa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), gps.class);
-                getActivity().startActivity(intent);
+                if (ContextCompat.checkSelfPermission(getActivity(),
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
+                            Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                    } else {
+
+                        ActivityCompat.requestPermissions(getActivity(),
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                permiso);
+                        if (ContextCompat.checkSelfPermission(getActivity(),
+                                Manifest.permission.ACCESS_FINE_LOCATION)
+                                == PackageManager.PERMISSION_GRANTED){
+                            Intent intent = new Intent(getActivity(), gps.class);
+                            getActivity().startActivity(intent);
+                        }
+
+                    }
+                }else{
+                    Intent intent = new Intent(getActivity(), gps.class);
+                    getActivity().startActivity(intent);
+                }
+
             }
         });
         web = root.findViewById(R.id.web);
