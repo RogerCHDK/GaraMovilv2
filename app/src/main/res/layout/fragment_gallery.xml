@@ -46,6 +46,12 @@
                 android:hint="@string/condiciones"
                 android:inputType="textPersonName" />
 
+            <ImageView
+                android:id="@+id/img_prod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo" />
+
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +43,7 @@ public class GarantiaFragment extends Fragment {
     DatabaseReference databaseReference;
     ListView lv_garantia;
     EditText edt_producto, edt_tienda, edt_tiempo, edt_condiciones;
+    ImageView img_producto;
 
     Garantia personaSelect;
     private List<Garantia> listPersona = new ArrayList<>();
@@ -67,6 +69,7 @@ public class GarantiaFragment extends Fragment {
         edt_tiempo = root.findViewById(R.id.txtP_tiempoF);
         edt_tienda = root.findViewById(R.id.txtP_tiendaF);
         edt_condiciones = root.findViewById(R.id.txtP_condicionesF);
+        img_producto = root.findViewById(R.id.img_prod);
 
         inicializarFirebase();
         listarDatos();
@@ -78,6 +81,12 @@ public class GarantiaFragment extends Fragment {
                 edt_tiempo.setText(personaSelect.getTiempo());
                 edt_tienda.setText(personaSelect.getTienda());
                 edt_condiciones.setText(personaSelect.getCondiciones());
+                if(personaSelect.getProducto().equals("control")){
+                    //img_producto.setImageResource(R.drawable.control);
+                    //aqui pones tu imagen
+                }else if(personaSelect.getProducto().equals("laptop")){
+                    //img_producto.setImageResource(R.drawable.laptop);
+                }
             }
         });
 
