@@ -1,6 +1,8 @@
 package com.example.pruebafirebase.ui.perfil;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -78,18 +80,29 @@ public class PerfilFragment extends Fragment {
                         != PackageManager.PERMISSION_GRANTED) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION)) {
-
+                        new AlertDialog.Builder(getActivity()).setTitle("Permiso necesario")
+                                .setMessage("Este permiso es necesario para la app")
+                                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        ActivityCompat.requestPermissions(getActivity(),
+                                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                                permiso);
+                                    }
+                                })
+                                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .create().show();
                     } else {
 
                         ActivityCompat.requestPermissions(getActivity(),
                                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                                 permiso);
-                        if (ContextCompat.checkSelfPermission(getActivity(),
-                                Manifest.permission.ACCESS_FINE_LOCATION)
-                                == PackageManager.PERMISSION_GRANTED){
-                            Intent intent = new Intent(getActivity(), gps.class);
-                            getActivity().startActivity(intent);
-                        }
+
 
                     }
                 }else{
@@ -113,6 +126,16 @@ public class PerfilFragment extends Fragment {
 
         return root;
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == permiso){
+            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Intent intent = new Intent(getActivity(), gps.class);
+                getActivity().startActivity(intent);
+            }
+        }
     }
 
     private void inicializarFirebase() {
